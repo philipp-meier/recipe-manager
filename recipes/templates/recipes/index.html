@@ -1,0 +1,40 @@
+{% extends "recipes/layout.html" %}
+{% load i18n %}
+
+{% block body %}
+    <h4 class="mb-3 text-center">{% translate 'WelcomeMessage' %} {{ request.user.username }}!</h4>
+
+    <div class="random-suggestion">
+        <form class="random-suggestion-form" role="search" action="{% url 'index' %}" method="GET">
+            <input class="form-control" type="number" min="1" name="amount" value="3">
+            <button class="btn btn-outline-success" type="submit"><i class="bi-dice-3"></i> {% translate 'GetSuggestions' %}
+            </button>
+        </form>
+    </div>
+
+    <h5 class="text-center">{% translate 'RandomSuggestions' %}</h5>
+    {% if recipes %}
+        <div class="recipe-suggestions">
+            {% for recipe in recipes %}
+                <div class="card mb-3" style="width: 18rem;">
+                    <div class="recipe-image-container">
+                        {% if recipe.img %}
+                            <img class="card-img-top" src="{{ recipe.img }}" alt="Card image cap">
+                        {% else %}
+                            <p class="card-img-top">{% translate 'ImageNotAvailable' %}</p>
+                        {% endif %}
+                    </div>
+
+                    <div class="card-body">
+                        <h5 class="card-title mb-3">{{ recipe.name }}</h5>
+                        <a href="{% url 'edit_recipe' recipe.pk %}" class="btn btn-outline-primary"><i
+                                class="bi-search"></i> {% translate 'ViewRecipe' %}</a>
+                    </div>
+                </div>
+            {% empty %}
+                <p>No recipes available.</p>
+            {% endfor %}
+        </div>
+    {% endif %}
+
+{% endblock %}

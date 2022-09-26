@@ -1,0 +1,106 @@
+{% load static %}
+{% load i18n %}
+
+{% get_available_languages as languages %}
+
+<!DOCTYPE html>
+<head>
+    <title>Recipe Manager | {% block title %}{% translate 'HomeLink' %}{% endblock %}</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="{% static 'recipes/styles.css' %}" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'recipes/libs/bootstrap-5.2.1.min.css' %}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+    <link rel="shortcut icon" type="image/png" href="{% static 'recipes/favicon.ico' %}"/>
+    <script src="{% static 'recipes/libs/bootstrap-5.2.1.bundle.min.js' %}"></script>
+    <script src="{% url 'javascript-catalog' %}"></script>
+
+    {% block script %}
+    {% endblock %}
+</head>
+<body>
+<nav class="navbar navbar-expand-lg bg-light">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="{% url 'index' %}">Recipe Manager</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                {% if request.user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.resolver_match.url_name == "index" %} active{% endif %}"
+                           href="{% url 'index' %}" aria-current="page">{% translate 'HomeLink' %}</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link{% if request.resolver_match.url_name == "recipe_list" %} active{% endif %}"
+                           href="{% url 'recipe_list' %}">{% translate 'Recipes' %}</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'logout' %}">{% translate 'Logout' %}</a>
+                    </li>
+                {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link{% if request.resolver_match.url_name == "login" %} active{% endif %}"
+                           href="{% url 'login' %}">{% translate 'Login' %}</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link{% if request.resolver_match.url_name == "register" %} active{% endif %}"
+                           href="{% url 'register' %}">{% translate 'Register' %}</a>
+                    </li>
+                {% endif %}
+            </ul>
+            <ul class="navbar-nav mb-2 mb-lg-0">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        {% translate 'Language' %}
+                    </a>
+                    <ul class="dropdown-menu">
+                        {% for lang_code, lang_name in languages %}
+                            <li>
+                                <button type="button" class="dropdown-item" data-lang="{{ lang_code }}"
+                                    onclick="onChangeLanguage(this)">{{ lang_name }}</button>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </li>
+            </ul>
+            {% if request.user.is_authenticated %}
+                <form class="d-flex" role="search" action="{% url 'recipe_list' %}" method="GET">
+                    <input class="form-control me-2" type="search" name="q" placeholder="{% translate 'Search' %}" aria-label="Search" autocomplete="off">
+                    <button class="btn btn-outline-success" type="submit">{% translate 'Search' %}</button>
+                </form>
+            {% endif %}
+        </div>
+    </div>
+</nav>
+
+<div class="body m-3">
+    {% block body %}
+    {% endblock %}
+</div>
+
+<footer class="pt-4 my-md-5 border-top">
+    <div class="text-center py-3">© 2022 Copyright:
+        <a href="https://github.com/philipp-meier"> philipp-meier</a>
+    </div>
+</footer>
+
+<script>
+    function onChangeLanguage(btn) {
+        fetch("/api/v1/language", {
+            method: "POST",
+            body: JSON.stringify({ langCode: btn.dataset.lang })
+        })
+        .then(function (response) {
+            if (response.status === 200) {
+                window.location.reload();
+            }
+        });
+    }
+</script>
+
+</body>
+</html>

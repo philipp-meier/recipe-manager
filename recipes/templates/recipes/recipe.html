@@ -1,0 +1,39 @@
+{% extends "recipes/layout.html" %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}{% if context %}{{ context.name }}{% else %}Recipe{% endif %}{% endblock %}
+
+{% block script %}
+    <script type="text/javascript">recipeIngredients = {{ ingredientsJson|safe }};</script>
+    <script src="{% static 'recipes/ingredientsControl.js' %}"></script>
+{% endblock %}
+
+{% block body %}
+    <h3 class="mb-3">{% if mode == 'add' %}{% translate 'AddRecipe' %}{% else %}{% translate 'EditRecipe' %}{% endif %}</h3>
+
+    <div class="recipe{% if mode == 'edit' and context.photo %} with-image{% endif %}">
+        <div class="left">
+            <form id="recipeForm" {% if mode == 'add' %}action="{% url 'add_recipe' %}"
+                  {% else %}action="{% url 'edit_recipe' context.pk %}"{% endif %} method="post"
+                  enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form }}
+
+                <h4 class="mt-4">{% translate 'Ingredients' %}</h4>
+                <div id="ingredientsControl" class="mb-4"></div>
+
+                <button type="submit" class="btn btn-primary"><i class="bi-arrow-bar-left"></i> {% translate 'SaveAndClose' %}</button>
+            </form>
+        </div>
+
+        {% if mode == 'edit' and context.photo %}
+            <div class="right">
+                <div class="recipe-image-container mb-3">
+                    <img src="{{ context.photo.url }}">
+                </div>
+            </div>
+        {% endif %}
+    </div>
+
+{% endblock %}

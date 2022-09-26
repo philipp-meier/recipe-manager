@@ -1,0 +1,24 @@
+{% extends "recipes/layout.html" %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}{% translate 'Recipes' %}{% endblock %}
+
+{% block script %}
+    <script type="text/javascript">textfilter = {{ textfilter|safe }};</script>
+    <script src="{% static 'recipes/recipeList.js' %}"></script>
+{% endblock %}
+
+{% block body %}
+    <div class="menu mb-3">
+        <a href="{% url 'add_recipe' %}" class="btn btn-primary"><i class="bi-plus-circle"></i> {% translate 'AddRecipe' %}</a>
+    </div>
+
+    <nav>
+        <ul class="pagination">
+        </ul>
+    </nav>
+
+    <div id="recipes" class="recipe-container">
+    </div>
+{% endblock %}

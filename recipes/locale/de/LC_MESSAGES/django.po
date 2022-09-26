@@ -1,0 +1,118 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: 1.0\n"
+"Report-Msgid-Bugs-To: philipp-meier @ GitHub\n"
+"POT-Creation-Date: 2022-09-18 11:04+0000\n"
+"Language: de\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "WelcomeMessage"
+msgstr "Willkommen"
+
+msgid "Login"
+msgstr "Anmelden"
+
+msgid "Logout"
+msgstr "Abmelden"
+
+msgid "Register"
+msgstr "Registrieren"
+
+msgid "Language"
+msgstr "Sprache"
+
+msgid "Username"
+msgstr "Benutzername"
+
+msgid "Password"
+msgstr "Passwort"
+
+msgid "ExistingAccountQuestion"
+msgstr "Sie haben noch kein Konto?"
+
+msgid "RegisterHere"
+msgstr "Registrieren Sie sich hier."
+
+msgid "HomeLink"
+msgstr "Startseite"
+
+msgid "Recipes"
+msgstr "Rezepte"
+
+msgid "Search"
+msgstr "Suchen"
+
+msgid "GetSuggestions"
+msgstr "Vorschläge"
+
+msgid "RandomSuggestions"
+msgstr "Zufällige Vorschläge"
+
+msgid "AddRecipe"
+msgstr "Rezept hinzufügen"
+
+msgid "EditRecipe"
+msgstr "Rezept bearbeiten"
+
+msgid "EmailAddress"
+msgstr "E-Mail Adresse"
+
+msgid "ConfirmPassword"
+msgstr "Passwort bestätigen"
+
+msgid "AlreadyHaveAnAccount"
+msgstr "Haben Sie bereits ein Konto?"
+
+msgid "LogInHere"
+msgstr "Hier anmelden."
+
+msgid "ViewRecipe"
+msgstr "Rezept öffnen"
+
+msgid "ImageNotAvailable"
+msgstr "Bild nicht verfügbar."
+
+msgid "Delete"
+msgstr "Löschen"
+
+msgid "Previous"
+msgstr "Vorherige"
+
+msgid "Next"
+msgstr "Nächste"
+
+msgid "Ingredients"
+msgstr "Zutaten"
+
+msgid "AddIngredient"
+msgstr "Zutat hinzufügen"
+
+msgid "Amount"
+msgstr "Menge"
+
+msgid "Unit"
+msgstr "Einheit"
+
+msgid "Ingredient"
+msgstr "Zutat"
+
+msgid "Commands"
+msgstr "Befehle"
+
+msgid "SaveAndClose"
+msgstr "Speichern & Schließen"
+
+msgid "Name"
+msgstr "Bezeichnung"
+
+msgid "Category"
+msgstr "Kategorie"
+
+msgid "Photo"
+msgstr "Bild"
+
+msgid "Description"
+msgstr "Beschreibung"

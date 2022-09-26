@@ -1,0 +1,117 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: 1.0\n"
+"Report-Msgid-Bugs-To: philipp-meier @ GitHub\n"
+"POT-Creation-Date: 2022-09-18 11:04+0000\n"
+"Language: de\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+msgid "WelcomeMessage"
+msgstr "Welcome"
+
+msgid "Login"
+msgstr "Login"
+
+msgid "Logout"
+msgstr "Logout"
+
+msgid "Register"
+msgstr "Register"
+
+msgid "Language"
+msgstr "Language"
+
+msgid "Username"
+msgstr "Username"
+
+msgid "Password"
+msgstr "Password"
+
+msgid "ExistingAccountQuestion"
+msgstr "Don't have an account?"
+
+msgid "RegisterHere"
+msgstr "Register here."
+
+msgid "HomeLink"
+msgstr "Home"
+
+msgid "Recipes"
+msgstr "Recipes"
+
+msgid "Search"
+msgstr "Search"
+
+msgid "GetSuggestions"
+msgstr "Suggestions"
+
+msgid "RandomSuggestions"
+msgstr "Random suggestions"
+
+msgid "AddRecipe"
+msgstr "Add recipe"
+
+msgid "EditRecipe"
+msgstr "Edit Recipe"
+
+msgid "EmailAddress"
+msgstr "Email Address"
+
+msgid "ConfirmPassword"
+msgstr "Confirm Password"
+
+msgid "AlreadyHaveAnAccount"
+msgstr "Already have an account?"
+
+msgid "LogInHere"
+msgstr "Log In here."
+
+msgid "ViewRecipe"
+msgstr "View Recipe"
+
+msgid "ImageNotAvailable"
+msgstr "Image not available."
+
+msgid "Delete"
+msgstr "Delete"
+
+msgid "Previous"
+msgstr "Previous"
+
+msgid "Next"
+msgstr "Next"
+
+msgid "Ingredients"
+msgstr "Ingredients"
+
+msgid "AddIngredient"
+msgstr "Add ingredient"
+
+msgid "Amount"
+msgstr "Amount"
+
+msgid "Unit"
+msgstr "Unit"
+
+msgid "Ingredient"
+msgstr "Ingredient"
+
+msgid "Commands"
+msgstr "Commands"
+
+msgid "SaveAndClose"
+msgstr "Save & Close"
+
+msgid "Name"
+msgstr "Name"
+
+msgid "Category"
+msgstr "Category"
+
+msgid "Photo"
+msgstr "Photo"
+
+msgid "Description"
+msgstr "Description"

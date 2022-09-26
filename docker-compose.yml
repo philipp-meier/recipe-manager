@@ -1,0 +1,31 @@
+version: "3.9"
+
+services:
+
+  nginx:
+    image: nginx:stable
+    restart: always
+    ports:
+    - "5980:80"
+    environment:
+    - DJANGO_HOST=app
+    volumes:
+    - ./nginx/default.conf.template:/etc/nginx/templates/default.conf.template
+    - ./media:/media
+    - ./recipes/static:/static
+    networks:
+    - backend
+
+  app:
+    build: .
+    restart: always
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - .:/code
+    env_file:
+      - prod.env
+    networks:
+      - backend
+
+networks:
+    backend:
