@@ -1,8 +1,10 @@
 # Recipe Manager
 Simple, responsive and secure Django CRUD application for recipes with additional features.
 
+![Preview](https://repository-images.githubusercontent.com/541568387/cd040f1d-e94b-4b65-8701-d9b084373a8d)
+
 ## Goal
-Create my first Django Web Application, which is ready to be (self-)hosted with the knowledge gained in `CS50's Web Programming with Python and JavaScript` and beyond.  
+Create my first Django Web Application, which is ready to be (self-)hosted with the knowledge gained in [CS50's Web Programming with Python and JavaScript](https://www.edx.org/course/cs50s-web-programming-with-python-and-javascript) and beyond.  
 
 **Note:** This is a learning project I set up to familiarize myself with the Django Web Framework and its features.
 
