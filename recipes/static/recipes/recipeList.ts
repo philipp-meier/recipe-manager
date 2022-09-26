@@ -4,7 +4,6 @@ const gettext = (<any>window).gettext;
 
 class RecipeList {
     private current_page = 1;
-    private 
 
     constructor() {
         // Preload the first page.
