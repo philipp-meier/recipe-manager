@@ -1,2 +1,3 @@
+# Exclude external libraries and the Django admin files from the GitHub language statistic.
 recipes/static/recipes/libs/** linguist-vendored
 recipes/static/admin/** linguist-vendored
