@@ -1,6 +1,11 @@
-document.addEventListener("DOMContentLoaded", () => new RecipeList());
+interface IRecipe {
+    pk: number;
+    name: string;
+    category: string;
+    img: string;    
+}
 
-const gettext = (<any>window).gettext;
+document.addEventListener("DOMContentLoaded", () => new RecipeList());
 
 class RecipeList {
     private current_page = 1;
@@ -10,7 +15,7 @@ class RecipeList {
         this.loadRecipes(1);
     }
 
-    private loadRecipes(pageNum): void {
+    private loadRecipes(pageNum: number): void {
         const paginationContainer = <HTMLElement>document.querySelector(".pagination");
 
         // Remove existing pagination items
@@ -27,11 +32,11 @@ class RecipeList {
                 const curPage = result.curPage;
 
                 // Previous button
-                paginationContainer.append(this.createPaginationItem(gettext('Previous'), curPage-1, !result.hasPrevious));
+                paginationContainer.append(this.createPaginationItem(window.gettext('Previous'), curPage-1, !result.hasPrevious));
 
                 // Add the refreshed pagination items
                 for (let i = 1; i <= result.numPages; i++) {
-                    const paginationItem = this.createPaginationItem(i, i);
+                    const paginationItem = this.createPaginationItem(i.toString(), i);
 
                     if (i == curPage)
                         paginationItem.classList.add("active");
@@ -40,13 +45,13 @@ class RecipeList {
                 }
 
                 // Next button
-                paginationContainer.append(this.createPaginationItem(gettext('Next'), curPage+1, !result.hasNext));
+                paginationContainer.append(this.createPaginationItem(window.gettext('Next'), curPage+1, !result.hasNext));
 
                 const recipeContainer = <HTMLDivElement>document.querySelector("#recipes");
                 // Remove all recipes from the previous page
                 recipeContainer.replaceChildren();
 
-                const recipes = result.recipes;
+                const recipes = <IRecipe[]>result.recipes;
                 for (let i = 0; i < recipes.length; i++)
                     recipeContainer.append(this.createRecipeContainer(recipes[i]));
 
@@ -54,7 +59,7 @@ class RecipeList {
             });
     }
 
-    private createRecipeContainer(recipe): HTMLDivElement {
+    private createRecipeContainer(recipe: IRecipe): HTMLDivElement {
         const container = document.createElement('div');
         container.className = "recipe-list-item-container border border-black rounded-3 mb-2";
 
@@ -73,7 +78,7 @@ class RecipeList {
         }
         else {
             const p = document.createElement('p');
-            p.textContent = gettext("ImageNotAvailable");
+            p.textContent = window.gettext("ImageNotAvailable");
             imageContainer.append(p);
         }
 
@@ -97,12 +102,12 @@ class RecipeList {
         const viewLink = document.createElement('a');
         viewLink.className = "btn btn-sm btn-outline-primary";
         viewLink.href = `/recipe/edit/${recipe.pk}`;
-        viewLink.innerHTML = `<i class="bi-search"></i> ${gettext('ViewRecipe')}`;
+        viewLink.innerHTML = `<i class="bi-search"></i> ${window.gettext('ViewRecipe')}`;
         commandContainer.append(viewLink);
 
         const deleteButton = document.createElement('button');
         deleteButton.className = "btn btn-sm btn-outline-danger mx-1";
-        deleteButton.innerHTML = `<i class='bi-trash'></i> ${gettext('Delete')}`;
+        deleteButton.innerHTML = `<i class='bi-trash'></i> ${window.gettext('Delete')}`;
         deleteButton.onclick = () => {
             fetch("/api/v1/recipe", {
                 method: "DELETE",
@@ -123,7 +128,7 @@ class RecipeList {
         return container;
     }
 
-    private createPaginationItem(text, pageNum, disableState = false): HTMLLIElement {
+    private createPaginationItem(text: string, pageNum: number, disableState = false): HTMLLIElement {
         const li = document.createElement('li');
         li.classList.add("page-item");
 

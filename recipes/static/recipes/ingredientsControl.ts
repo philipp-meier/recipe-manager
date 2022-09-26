@@ -4,8 +4,6 @@ interface IIngredient {
     ingredient: string;
 }
 
-const gettext = (<any>window).gettext;
-
 window.addEventListener("DOMContentLoaded", () => {
     const container = <HTMLDivElement>document.querySelector("#ingredientsControl");
     const ctrl = new IngredientsControl(container);
@@ -19,7 +17,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
 class IngredientsControl {
     private _parent: Element;
-    private _ctl: Element;
+    private _ctl: Element | undefined;
     private _items: IIngredient[];
 
     constructor(p: Element) {
@@ -32,7 +30,7 @@ class IngredientsControl {
 
         const btnAddIngredient = document.createElement('btn');
         btnAddIngredient.className = "btn btn-sm btn-outline-success";
-        btnAddIngredient.innerHTML = `<i class='bi-plus-circle'></i> ${gettext("AddIngredient")}`;
+        btnAddIngredient.innerHTML = `<i class='bi-plus-circle'></i> ${window.gettext("AddIngredient")}`;
         btnAddIngredient.onclick = () => this.addIngredientRow(<HTMLElement>ctl.querySelector("tbody"));
         ctl.append(btnAddIngredient);
 
@@ -56,10 +54,10 @@ class IngredientsControl {
         const thead = document.createElement('thead');
 
         const tr = document.createElement('tr');
-        [gettext("Amount"), gettext("Unit"), gettext("Ingredient"), gettext("Commands")].forEach(text => {
+        ["Amount", "Unit", "Ingredient", "Commands"].forEach(text => {
             const th = document.createElement('th');
             th.scope = "col";
-            th.textContent = text;
+            th.textContent = window.gettext(text);
 
             tr.append(th);
         });
@@ -103,7 +101,7 @@ class IngredientsControl {
 
         const tdCommands = document.createElement('td');
         const btnDelete = document.createElement('button');
-        btnDelete.innerHTML = `<i class='bi-trash'></i> ${gettext("Delete")}`;
+        btnDelete.innerHTML = `<i class='bi-trash'></i> ${window.gettext("Delete")}`;
         btnDelete.className = "btn btn-sm btn-outline-danger";
         btnDelete.type = "button";
         btnDelete.tabIndex = -1;
@@ -119,6 +117,9 @@ class IngredientsControl {
     }
 
     public setPostData(): void {
+        if (!this._ctl)
+            return;
+
         const container = document.createElement('div');
         const postData = document.createElement('input');
         postData.type = "hidden";
@@ -130,6 +131,9 @@ class IngredientsControl {
     }
 
     private serializeIngredients(): string {
+        if (!this._ctl)
+            return "";
+
         const ingredients: IIngredient[] = [];
         this._ctl.querySelectorAll("table > tbody > tr").forEach(tr => {
             const cols = tr.children,

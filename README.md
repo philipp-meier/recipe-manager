@@ -28,6 +28,8 @@ Create my first Django Web Application, which is ready to be (self-)hosted with 
 I created a SQLite3 database called `dev.sqlite3`, which contains some demo data, but no media-files / images.  
 
 To run the application, the following commands must be entered:
+- `npm install -g typescript` and then `tsc` to compile the TypeScript files to JavaScript, if you don't use a file watcher like me (configurable in PyCharm and other IDEs).
+- `npm install -g sass` and then `sass recipes/static/recipes` - or use a file watcher as mentioned above.
 - `python3 -m pip install -r requirements.txt`: Installs the required Python packages.
 - `python3 manage.py compilemessages`: Compiles the localization files.
 - `python3 manage.py runserver`: Starts the application.  
