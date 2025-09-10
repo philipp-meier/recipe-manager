@@ -1,2 +1,2 @@
-django==4.2.22
+django==4.2.24
 Pillow==10.3.0
